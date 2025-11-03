@@ -31,7 +31,7 @@ cin >> coluna;
     cout <<"Digite a linha que quer marcar" << endl;
 cin >> linha;
 
-jogo[coluna-1][linha-1].a = jogador; //vai pegar no array vai meter a jogada
+jogo[coluna-1][linha-1].a = jogador; //vai pegar no array vai meter a jogada, o -1 significa que o jogador mete de 1 a 3 o array so açeita de 02 tem que tirar 1.
 jogo[coluna-1][linha-1].b = true;    // esse irá dizer que está ocupado
 
 mostrar ();
