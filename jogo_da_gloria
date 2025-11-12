@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cstdlib>  
+#include <ctime>  
+using namespace std;
+
+int main() {
+    srand(time(0));
+    int p[2] = {1, 1}, v = 0, perde[2] = {0, 0}, espera[2] = {0, 0}, repete[2] = {0, 0}; 
+                                                                                      
+
+    while (1) {  
+        for (int i = 1; i <= 30; i++) { 
+            if (i == p[0]) cout << "[P1] "; 
+            else if (i == p[1]) cout << "[P2] "; 
+            else if (i == 5 || i == 10 || i == 15 || i == 20 || i == 25) cout << "[E] "; 
+            else cout << "[" << i << "] "; 
+            if (i % 10 == 0) cout << endl; 
+        }
+        cout << endl;
+
+        cout << endl;
+        if (espera[v]) { cout << "J" << v + 1 << " espera\n"; espera[v] = 0; v = !v; continue; }  
+        if (perde[v]) { cout << "J" << v + 1 << " perde vez\n"; perde[v] = 0; v = !v; continue; } 
+
+        cout << "R" << v + 1 << " Enter"; cin.ignore(); cin.get(); 
+        int d = rand() % 6 + 1; cout << "Rolou " << d << endl; 
+        p[v] += d; if (p[v] > 30) p[v] = 30; 
+
+           
+        if (p[v] == 5) perde[v] = 1; 
+        else if (p[v] == 10) p[v] += 3; 
+        else if (p[v] == 15) p[v] -= 3; 
+        else if (p[v] == 20) repete[v] = 1; 
+        else if (p[v] == 25) espera[v] = 1; 
+        if (p[v] >= 30) { cout << "R" << v + 1 << " venceu!\n"; break; } 
+        if (!repete[v]) v = !v; 
+        repete[v] = 0; 
+    }
+}
